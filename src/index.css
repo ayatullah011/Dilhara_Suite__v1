@@ -13,18 +13,23 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
 }
 
+/* APP LAYOUT STRUCTURE */
 .app-container {
   display: flex;
   min-height: 100vh;
+  flex-direction: row;
 }
 
+/* SIDEBAR RESPONSIVE NAVIGATION */
 .sidebar {
   width: 260px;
   background-color: var(--bg-card);
   border-right: 1px solid #334155;
   padding: 24px;
+  flex-shrink: 0;
 }
 
 .sidebar h2 {
@@ -54,6 +59,7 @@ body {
   color: var(--accent-blue);
 }
 
+/* MAIN CONTENT AREA */
 .main-content {
   flex: 1;
   padding: 40px;
@@ -68,7 +74,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* Grid layout for Dashboard */
+/* STATS GRID LAYER */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -85,3 +91,62 @@ body {
 
 .stat-label { color: var(--text-muted); font-size: 14px; margin-bottom: 8px; }
 .stat-value { font-size: 26px; font-weight: 700; }
+
+/* TABLE RESPONSIVE WRAPPER */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ======================================================= */
+/* MEDIA QUERIES FOR TABLETS & MOBILES (RESPONSIVE ENGINE) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column; /* Sidebar-ka wuxux u guurayaa kor */
+  }
+
+  .sidebar {
+    width: 100%;
+    box-sizing: border-box;
+    border-right: none;
+    border-bottom: 1px solid #334155;
+    padding: 16px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .sidebar nav {
+    flex-direction: row; /* Navigation-ku wuxuu noqonayaa saf jiifa */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sidebar nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .main-content {
+    padding: 20px; /* Meelaha bannaan waa la yareeyey */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 badhan oo isku siman */
+    text-align: center;
+  }
+  
+  .sidebar nav a {
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+}
